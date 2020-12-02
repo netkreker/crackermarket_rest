@@ -8,7 +8,17 @@ const categoryBtn = document.getElementById("categoryBtn").addEventListener("cli
         console.log(categories);
         console.log(categories[0].parameters);
 
+        let table = document.getElementById('myTable')
 
+        for (let i = 0; i < categories.length; i++){
+            let row = `<tr>
+							<td>${categories[i].id}</td>
+							<td>${categories[i].name}</td>
+							<td>${categories[i].parentCategory}</td>
+					  </tr>`
+            table.innerHTML += row
+        }
+    });
 });
 
 
@@ -21,5 +31,4 @@ function getPosts(cb) {
     });
     xhr.send();
 }
-
 
