@@ -2,7 +2,10 @@ package com.crackermarket.app.controllers.category;
 
 import com.crackermarket.app.entities.Category;
 import com.crackermarket.app.services.CategoryDAO;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +22,8 @@ public class CategoryController {
     CategoryDAO categoryDAO;
 
     @GetMapping
-    public List<Category> listCategories() {
-        return categoryDAO.findAllCategories();
+    public List<Category> listCategories() throws JsonProcessingException {
+        List<Category> categories = categoryDAO.findAllCategories();
+        return categories;
     }
 }
