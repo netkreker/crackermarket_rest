@@ -1,16 +1,20 @@
-document.getElementById("categoryBtn").addEventListener("click", function() {
-    getCategories("GET", "http://localhost:8085/category");
-});
-function getCategories(method, URL) {
+const methodGET = "GET";
+const categoryURL = "http://localhost:8085/category";
+
+// document.getElementById("categoryBtn").addEventListener("click", function() {
+//     getCategories();
+// });
+
+function getCategories(cb) {
     const xhr = new XMLHttpRequest();
-    xhr.open(method, URL);
+    xhr.open(methodGET, categoryURL);
     xhr.addEventListener("load", () => {
-    let categories = JSON.parse(xhr.responseText);
-        buildCategoryTable(categories)
+    const categories = JSON.parse(xhr.responseText);
+        buildCategoryTable(categories);
+        cb(categories);
     });
     xhr.send();
 }
-
 
 function buildCategoryTable(data){
     let body = document.body;
@@ -51,3 +55,12 @@ function buildCategoryTable(data){
         return options;
     }
 }
+
+function createParentCategorySelector() {
+    let options = document.getElementById("parent_cat_selector")
+    getCategories(categories => {
+        console.log(categories)
+    });
+}
+
+document.addEventListener("DOMContentLoaded", createParentCategorySelector);

@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
 import java.util.List;
 
 @RestController
@@ -23,5 +25,12 @@ public class CategoryController {
         if(categories.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else return new ResponseEntity<>(categories, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/new", method = RequestMethod.GET)
+    public ModelAndView createCategory() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("category/new");
+        return modelAndView;
     }
 }
