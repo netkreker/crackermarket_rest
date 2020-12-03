@@ -1,34 +1,66 @@
-const method = "GET";
-const URL = "http://localhost:8080/category";
+const methodGET = "GET";
+const categoryURL = "http://localhost:8085/category";
 
-let parameter;
-const categoryBtn = document.getElementById("categoryBtn").addEventListener("click", function() {
-    getPosts(response => {
-        let categories = response;
-        console.log(categories);
-        console.log(categories[0].parameters);
+// document.getElementById("categoryBtn").addEventListener("click", function() {
+//     getCategories();
+// });
 
-        let table = document.getElementById('myTable')
-
-        for (let i = 0; i < categories.length; i++){
-            let row = `<tr>
-							<td>${categories[i].id}</td>
-							<td>${categories[i].name}</td>
-							<td>${categories[i].parentCategory}</td>
-					  </tr>`
-            table.innerHTML += row
-        }
-    });
-});
-
-
-function getPosts(cb) {
+function getCategories(cb) {
     const xhr = new XMLHttpRequest();
-    xhr.open(method, URL);
+    xhr.open(methodGET, categoryURL);
     xhr.addEventListener("load", () => {
-        const response = JSON.parse(xhr.responseText);
-        cb(response)
+    const categories = JSON.parse(xhr.responseText);
+        buildCategoryTable(categories);
+        cb(categories);
     });
     xhr.send();
 }
 
+function buildCategoryTable(data){
+    let body = document.body;
+    let table = document.createElement('table');
+    table.className = "table table-striped";
+    table.id = "myTable";
+    body.appendChild(table);
+    let tableHeader = `
+        <tr  class="bg-info">
+            <th>Category ID</th>
+            <th>Name</th>
+            <th>Parent category</th>
+            <th>Parameters</th>
+        </tr>
+        <tbody id="myTable">
+        </tbody>`
+
+    let catTable = document.getElementById('myTable')
+    catTable.innerHTML += tableHeader;
+
+    for (let i = 0; i < data.length; i++){
+        let row = `<tr>
+							<td>${data[i].id}</td>
+							<td>${data[i].name}</td>
+							<td>${data[i].parentCategory}</td>
+							<td><select>
+						    ${createOptions(data[i].parameters)}
+                            </select></td>
+					  </tr>`
+        catTable.innerHTML += row;
+    }
+
+    function createOptions(data) {
+        let options = "";
+        for(let i = 0; i < data.length; i ++) {
+            options += `<option>${data[i].name}</option>`;
+        }
+        return options;
+    }
+}
+
+function createParentCategorySelector() {
+    let options = document.getElementById("parent_cat_selector")
+    getCategories(categories => {
+        console.log(categories)
+    });
+}
+
+document.addEventListener("DOMContentLoaded", createParentCategorySelector);
