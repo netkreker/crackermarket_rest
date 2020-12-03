@@ -22,10 +22,11 @@ public class MainController {
 
                 Category category = new Category();
                 Parameter parameter = new Parameter();
-
+                Parameter parameter1 = new Parameter();
+                parameter1.setName(paramName + "1");
                 category.setName(categoryName);
                 parameter.setName(paramName);
-
+                category.addParameter(parameter1);
                 category.addParameter(parameter);
                 categoryDAO.saveCategory(category);
             }
