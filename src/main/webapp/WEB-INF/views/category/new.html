@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}" />
+</head>
+<body>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script th:src="@{/assets/js/script.js}"></script>
+<h1>Create new category</h1>
+<form onsubmit="createParentCategorySelector()">
+    <table>
+        <tr>
+            <th>Category name</th>
+            <th>Parent category</th>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" name="category_name">
+            </td>
+        </tr>
+            <tr>
+                <td>
+                    <select id="parent_cat_selector">
+
+                    </select>
+                </td>
+            </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Create category">
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
