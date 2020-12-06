@@ -1,4 +1,4 @@
-package com.crackermarket.app.entities;
+package com.crackermarket.app.shopmanagement.entities;
 
 
 public enum ParameterType {

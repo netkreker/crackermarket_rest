@@ -1,28 +1,27 @@
 package com.crackermarket.app.controllers;
 
-import com.crackermarket.app.entities.*;
-import com.crackermarket.app.services.CategoryDAO;
-import com.crackermarket.app.services.ParameterDAO;
-import com.crackermarket.app.services.ParameterValueDAO;
-import com.crackermarket.app.services.ProductDAO;
+import com.crackermarket.app.shopmanagement.entities.*;
+import com.crackermarket.app.shopmanagement.services.CategoryService;
+import com.crackermarket.app.shopmanagement.services.ParameterService;
+import com.crackermarket.app.shopmanagement.services.ParameterValueService;
+import com.crackermarket.app.shopmanagement.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class MainController {
+
     @Autowired
-    CategoryDAO categoryDAO;
+    CategoryService categoryService;
     @Autowired
-    ParameterDAO parameterDAO;
+    ParameterService parameterService;
     @Autowired
-    ProductDAO productDAO;
+    ParameterValueService parameterValueService;
     @Autowired
-    ParameterValueDAO parameterValueDAO;
+    ProductService productService;
         @GetMapping("/")
         public String mainPage() {
             return "index";
@@ -51,10 +50,12 @@ public class MainController {
 
             category.addParameter(parameter);
 
-
-            categoryDAO.saveCategory(category);
-            productDAO.saveProduct(product);
-            parameterValueDAO.saveParameterValue(parameterValue);
+            categoryService.save(category);
+//            categoryDAO.saveCategory(category);
+            productService.save(product);
+//            productDAO.saveProduct(product);
+            parameterValueService.save(parameterValue);
+//            parameterValueDAO.saveParameterValue(parameterValue);
             return "index";
         }
 }
