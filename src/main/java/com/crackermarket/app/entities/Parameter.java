@@ -8,17 +8,15 @@ import java.util.List;
 @Entity
 @Table(name = "PARAMETER")
 public class Parameter extends BaseEntity {
+    @Column(name = "PARAMETER_TYPE")
+    @Enumerated(EnumType.STRING)
+    private ParameterType parameterType;
 
-    @Column(name = "VALUE")
-    private String value;
-
-    public String getValue() {
-        return value;
+    public ParameterType getParameterType() {
+        return parameterType;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setParameterType(ParameterType parameterType) {
+        this.parameterType = parameterType;
     }
-
-
 }

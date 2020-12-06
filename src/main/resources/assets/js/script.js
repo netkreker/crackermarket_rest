@@ -55,12 +55,3 @@ function buildCategoryTable(data){
         return options;
     }
 }
-
-function createParentCategorySelector() {
-    let options = document.getElementById("parent_cat_selector")
-    getCategories(categories => {
-        console.log(categories)
-    });
-}
-
-document.addEventListener("DOMContentLoaded", createParentCategorySelector);
