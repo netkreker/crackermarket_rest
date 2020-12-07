@@ -1,13 +1,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}" />
+    <script  th:src="@{/assets/js/jQuery.js}"></script>
 </head>
 <body>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <h1>Categories</h1>
-<button id="categoryBtn" onclick="getCategories()">get categories</button>
-<a href="/category/new"><button>create category</button></a>
+<button id="categoryBtn">get categories</button>
+<button id="categoryNewBtn">create category</button>
+
 <script th:src="@{/assets/js/script.js}"></script>
 </body>
 </html>
